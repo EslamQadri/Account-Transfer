@@ -83,20 +83,21 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "defaultdb",
-        "USER": "avnadmin",
-        "PASSWORD": "AVNS_ZpQ5F0aW3Us0-Mzno-q",
-        "HOST": "pg-2ee1ad92-docspert-task.i.aivencloud.com",
-        "PORT": "25483",
-    }
+    # the server do not allow use exteral database 
+    # "default": {
+    #     "ENGINE": "django.db.backends.postgresql",
+    #     "NAME": "defaultdb",
+    #     "USER": "avnadmin",
+    #     "PASSWORD": "AVNS_ZpQ5F0aW3Us0-Mzno-q",
+    #     "HOST": "pg-2ee1ad92-docspert-task.i.aivencloud.com",
+    #     "PORT": "25483",
+    # }
 
     # sqlite for unit testing 
-#    "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
+   "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
 
