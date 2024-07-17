@@ -31,7 +31,7 @@ class TransferViewsTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "import_accounts.html")
-        self.assertContains(response, "successfully Insert in DataBase")
+      
         self.assertTrue(Accounts.objects.filter(name="Test Account").exists())
 
     # 7

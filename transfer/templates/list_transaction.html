@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Transaction</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <!-- DataTables -->
+    <link rel="stylesheet" href=" {% static 'css/dataTables.bootstrap4.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/responsive.bootstrap4.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/buttons.bootstrap4.min.css' %}" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}" />
+  </head>
+  <body>
+    <h1>Transaction</h1>
+  
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+       
+          <!-- /.card -->
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Transaction list</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Sender</th>
+                    <th>Receiver</th>
+                    <th>Amount</th>
+                    <th>Date of Transaction </th>
+
+
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for transaction in transactions %}
+                  <tr>
+                    <td>{{ transaction.sender }}</a></td>
+                    <td>{{ transaction.receiver }}</td>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.at }}</td>
+
+                  
+                  </tr>
+                  {% endfor %}
+                </body>
+              
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- DataTables & Plugins -->
+    <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/jszip.min.js' %}"></script>
+    <script src="{% static 'js/pdfmake.min.js' %}"></script>
+    <script src="{% static 'js/vfs_fonts.js' %}"></script>
+    <script src="{% static 'js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'js/buttons.colVis.min.js' %}"></script>
+    <script>
+      $(function () {
+        $('#example1')
+          .DataTable({
+            responsive: true,
+            lengthChange: false,
+            autoWidth: false,
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis']
+          })
+          .buttons()
+          .container()
+          .appendTo('#example1_wrapper .col-md-6:eq(0)')
+        $('#example2').DataTable({
+          paging: true,
+          lengthChange: false,
+          searching: false,
+          ordering: true,
+          info: true,
+          autoWidth: false,
+          responsive: true
+        })
+      })
+    </script>
+  </body>
+</html>

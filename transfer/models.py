@@ -16,6 +16,11 @@ class Transaction(models.Model):
     receiver=models.ForeignKey(Accounts,on_delete=models.PROTECT,related_name ="received_transactions")
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     at=models.DateTimeField(auto_now=True)
+    """
+    Another Solution :
+    Solution to discussion->?
+    in save method add constraints to avoid make transaction in admin panel put that is make load in database 
+    """
     def __str__(self):
         return f'Transaction from {self.sender} to {self.receiver} for {self.amount}'
     class Meta:

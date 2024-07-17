@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "transfer",
     "rest_framework",
+    "drf_yasg",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -76,6 +78,15 @@ TEMPLATES = [
     },
 ]
 
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Account Transfer ",
+    "SWAGGER_UI_DIST": "SIDECAR",
+    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    "REDOC_DIST": "SIDECAR",
+}
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
 WSGI_APPLICATION = "server.wsgi.application"
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
@@ -83,7 +94,7 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    # the server do not allow use exteral database 
+    # the server do not allow use exteral database
     # "default": {
     #     "ENGINE": "django.db.backends.postgresql",
     #     "NAME": "defaultdb",
@@ -92,9 +103,8 @@ DATABASES = {
     #     "HOST": "pg-2ee1ad92-docspert-task.i.aivencloud.com",
     #     "PORT": "25483",
     # }
-
-    # sqlite for unit testing 
-   "default": {
+    # sqlite for unit testing
+    "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }

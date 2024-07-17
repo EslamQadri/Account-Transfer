@@ -6,35 +6,21 @@ from django.contrib import messages
 import pandas as pd
 from django.db import transaction
 from decimal import Decimal
-from transfer.utilities import can_do_transaction
-
+from transfer.utilities import can_do_transaction, process_csv_and_import_accounts
 
 # Create your views here.
+
 
 # to do make prograsse bar
 @transaction.atomic
 def import_accounts(request):
     message = None
-    if request.method == "POST" and request.FILES["csv_file"]:
+    if request.method == "POST" and request.FILES.get("csv_file"):
         csv_file = request.FILES["csv_file"]
-        if not csv_file:
-            message = " Plaese Import CSV File "
+        success, message = process_csv_and_import_accounts(csv_file)
+        if success:
             return render(request, "import_accounts.html", {"message": message})
         else:
-            df = pd.read_csv(csv_file)
-            list_of_accounts = [
-                Accounts(uuid=row["ID"], name=row["Name"], balance=row["Balance"])
-                for index, row in df.iterrows()
-            ]
-            Accounts.objects.bulk_create(
-                list_of_accounts,
-                update_conflicts=True,
-                unique_fields=["uuid"],
-                update_fields=["name", "balance"],
-            )
-
-            message = " successfully Insert in DataBase "
-            print("\n\n", message, "\n\n")
             return render(request, "import_accounts.html", {"message": message})
     return render(request, "import_accounts.html", {"message": message})
 
@@ -77,3 +63,8 @@ def account_info(request, pk):
         return render(request, "account_info.html", {"account": account})
     else:
         return render(request, "404.html")
+
+
+def list_transaction(request):
+    transactions = Transaction.objects.all()
+    return render(request, "list_transaction.html", {"transactions": transactions})

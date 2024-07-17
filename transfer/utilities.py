@@ -18,6 +18,26 @@ def get_account_if_exists(account_id):
     except Accounts.DoesNotExist:
         return None
 
+import pandas as pd
+from transfer.models import Accounts
+
+def process_csv_and_import_accounts(csv_file):
+    if not csv_file:
+        return False, "Please upload a CSV file."
+
+    df = pd.read_csv(csv_file)
+    accounts = [
+        Accounts(uuid=row["ID"], name=row["Name"], balance=row["Balance"])
+        for index, row in df.iterrows()
+    ]
+    Accounts.objects.bulk_create(
+        accounts,
+        update_conflicts=True,
+        unique_fields=["uuid"],
+        update_fields=["name", "balance"],
+    )
+    return True, "Accounts imported successfully."
+
 
 def can_do_transaction(from_account_id, to_account_id, amount):
     message = None
