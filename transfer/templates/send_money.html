@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transfer Funds</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if message %}
+        <h3>{{ message }}</h3>
+        {% endif %}
+        <h1>Transfer Funds</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="from_account">From Account:</label>
+            <select id="from_account" name="from_account">
+                {% for name in names %}
+                <option value="{{ name.uuid }}">{{ name.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="to_account">To Account:</label>
+            <select id="to_account" name="to_account">
+                {% for name in names %}
+                <option value="{{ name.uuid }}">{{ name.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" min="0" step="0.01" />
+            <button type="submit">Transfer</button>
+        </form>
+    </div>
+</body>
+</html>
