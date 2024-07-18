@@ -6,7 +6,7 @@ from decimal import Decimal
 def is_valid_uuid(uuid_str):
     try:
         uuid_obj = uuid.UUID(uuid_str)
-        return str(uuid_obj) == uuid_str 
+        return str(uuid_obj) == uuid_str
     except ValueError:
         return False
 
@@ -18,25 +18,28 @@ def get_account_if_exists(account_id):
     except Accounts.DoesNotExist:
         return None
 
+
 import pandas as pd
 from transfer.models import Accounts
 
-def process_csv_and_import_accounts(csv_file):
-    if not csv_file:
-        return False, "Please upload a CSV file."
 
-    df = pd.read_csv(csv_file)
-    accounts = [
-        Accounts(uuid=row["ID"], name=row["Name"], balance=row["Balance"])
-        for index, row in df.iterrows()
-    ]
-    Accounts.objects.bulk_create(
-        accounts,
-        update_conflicts=True,
-        unique_fields=["uuid"],
-        update_fields=["name", "balance"],
-    )
-    return True, "Accounts imported successfully."
+def process_csv_and_import_accounts(csv_file):
+
+    try:
+        df = pd.read_csv(csv_file)
+        accounts = [
+            Accounts(uuid=row["ID"], name=row["Name"], balance=row["Balance"])
+            for index, row in df.iterrows()
+        ]
+        Accounts.objects.bulk_create(
+            accounts,
+            update_conflicts=True,
+            unique_fields=["uuid"],
+            update_fields=["name", "balance"],
+        )
+        return True, "Accounts imported successfully."
+    except:
+        return False, "Please upload a CSV file."
 
 
 def can_do_transaction(from_account_id, to_account_id, amount):
