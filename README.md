@@ -12,7 +12,14 @@ small web app using Django that handles fund transfers between two accounts supp
 - List all accounts 
 - Get account information
 - Transfer funds between two accounts
-- list all Transfers 
+
+## Extra Features
+
+- list all Transfers page and API
+- API Swagger documention
+- Deployed on server (pythonanywhere.com)
+- Added RESTFUL APIs
+
 
 ## Installation
 
