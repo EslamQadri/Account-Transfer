@@ -19,7 +19,10 @@ small web app using Django that handles fund transfers between two accounts supp
 - API Swagger documention
 - Deployed on server (pythonanywhere.com)
 - Added RESTFUL APIs
-
+  
+## Unit Testing Coverage report :
+![Screenshot (63)](https://github.com/user-attachments/assets/6a24f049-49bb-47b5-a11c-08dd136fa9b8)
+![Screenshot (64)](https://github.com/user-attachments/assets/b2192fcf-9b0f-47b5-a7b1-467810056877)
 
 ## Installation
 
@@ -71,10 +74,6 @@ small web app using Django that handles fund transfers between two accounts supp
 - `http://127.0.0.1:8000/list_transaction`    : List of all Transfers
 
 
-## Unit Testing 
-
-# in win : python manage.py test transfer.tests 
-# in Linix or mac : python3 manage.py test transfer.tests
 
 
 
