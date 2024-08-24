@@ -31,10 +31,10 @@ small web app using Django that handles fund transfers between two accounts supp
 3. Install dependencies: `pip install -r requirements.txt`
 
 ## Admin 
-# User Name : ESLAM
-#Password :   1234 
+### User Name : ESLAM
+### Password :   1234 
 
-## Endpoints
+# Endpoints
 
 # the base URL on server is  and that is the swagger docs : https://eslamqadr1.pythonanywhere.com/ 
 
