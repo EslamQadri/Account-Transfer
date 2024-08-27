@@ -58,7 +58,7 @@ small web app using Django that handles fund transfers between two accounts supp
 
 # In Server 
 
-- `https://eslamqadr1.pythonanywhere.com/import_accounts` :     That Import CSV files and insert it in database 
+- `https://eslamqadr1.pythonanywhere.com/import` :     That Import CSV files and insert it in database 
 - `https://eslamqadr1.pythonanywhere.com/list_accounts`:      : get List of all accounts 
 - `https://eslamqadr1.pythonanywhere.com/account_info/uuid` :   get account info based on ID
 - `https://eslamqadr1.pythonanywhere.com/send_money`:         : List of all accounts
@@ -67,7 +67,7 @@ small web app using Django that handles fund transfers between two accounts supp
   
 # in localhost 
 
-- `http://127.0.0.1:8000/import_accounts` :     That Import CSV files and insert it in database 
+- `http://127.0.0.1:8000/import` :     That Import CSV files and insert it in database 
 - `http://127.0.0.1:8000/list_accounts`:      : get List of all accounts 
 - `http://127.0.0.1:8000/account_info/uuid` :   get account info based on ID
 - `http://127.0.0.1:8000/send_money`:         : List of all accounts
